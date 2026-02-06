@@ -1,0 +1,789 @@
+@prefix : <http://purl.org/pionera/daimo#> .
+@prefix sd: <https://w3id.org/okn/o/sd/> .
+@prefix mls: <http://www.w3.org/ns/mls#> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix daimo: <http://purl.org/pionera/daimo#> .
+@prefix mlso: <http://w3id.org/mlso/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://purl.org/pionera/daimo#> .
+
+<http://purl.org/pionera/daimo#> rdf:type owl:Ontology ;
+                               mod:createdWith <https://chowlk.linkeddata.es/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/mbox
+foaf:mbox rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/mod#createdWith
+mod:createdWith rdf:type owl:AnnotationProperty .
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+###  http://purl.org/pionera/daimo#
+<http://purl.org/pionera/daimo#> rdf:type owl:NamedIndividual ;
+                              dcterms:creator daimo:Edmundo ,
+                                              daimo:Jiayun .
+
+
+###  http://purl.org/pionera/daimo#Edmundo
+daimo:Edmundo rdf:type owl:NamedIndividual ,
+                      foaf:Person ;
+             foaf:mbox <mailto:edmundo.mori.orrillo@upm.es> ;
+             foaf:name "Edmundo de Elvira Mori Orrillo" .
+
+
+###  http://purl.org/pionera/daimo#Jiayun
+daimo:Jiayun rdf:type owl:NamedIndividual ,
+                     foaf:Person ;
+            foaf:mbox <mailto:jiayun.liu@upm.es> ;
+            foaf:name "Jiayun Liu" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:ObjectProperty ;
+                rdfs:domain dcat:Dataset ;
+                rdfs:range foaf:Agent ;
+                rdfs:label "creator" .
+
+
+###  http://www.w3.org/ns/dcat#accessService
+dcat:accessService rdf:type owl:ObjectProperty ;
+                   rdfs:domain dcat:Distribution ;
+                   rdfs:range dcat:DataService ;
+                   rdfs:label "access service" .
+
+
+###  http://www.w3.org/ns/dcat#distribution
+dcat:distribution rdf:type owl:ObjectProperty ;
+                  rdfs:domain dcat:Dataset ;
+                  rdfs:range dcat:Distribution ;
+                  rdfs:label "distribution" .
+
+
+###  http://www.w3.org/ns/dcat#servesDataset
+dcat:servesDataset rdf:type owl:ObjectProperty ;
+                   rdfs:domain dcat:DataService ;
+                   rdfs:range dcat:Dataset ;
+                   rdfs:label "serves dataset" .
+
+
+###  http://www.w3.org/ns/mls#SourceCode
+mls:SourceCode rdf:type owl:ObjectProperty ;
+               rdfs:domain sd:Software ;
+               rdfs:range sd:SourceCode ;
+               rdfs:label "source code" .
+
+
+###  http://www.w3.org/ns/mls#executes
+mls:executes rdf:type owl:ObjectProperty ;
+             rdfs:domain mls:Run ;
+             rdfs:range mls:Implementation ;
+             rdfs:label "executes" .
+
+
+###  http://www.w3.org/ns/mls#hasHyperParameter
+mls:hasHyperParameter rdf:type owl:ObjectProperty ;
+                      rdfs:domain mls:Implementation ;
+                      rdfs:range mls:HyperParameter ;
+                      rdfs:label "has hyper parameter" .
+
+
+###  http://www.w3.org/ns/mls#hasOutput
+mls:hasOutput rdf:type owl:ObjectProperty ;
+              rdfs:domain mls:Run ;
+              rdfs:range daimo:Model ,
+                         mls:ModelEvaluation ;
+              rdfs:label "has output" .
+
+
+###  http://www.w3.org/ns/mls#hasPart
+mls:hasPart rdf:type owl:ObjectProperty ;
+            rdfs:domain mls:EvaluationProcedure ,
+                        mls:EvaluationSpecification ,
+                        mls:Implementation ;
+            rdfs:range mls:EvaluationMeasure ,
+                       mls:EvaluationSpecification ,
+                       sd:Software ;
+            rdfs:label "has part" .
+
+
+###  http://www.w3.org/ns/mls#hasQuality
+mls:hasQuality rdf:type owl:ObjectProperty ;
+               rdfs:domain mls:HyperParameter ;
+               rdfs:range mlso:HyperParameterCharacteristic ;
+               rdfs:label "has quality" .
+
+
+###  http://www.w3.org/ns/mls#implements
+mls:implements rdf:type owl:ObjectProperty ;
+               rdfs:domain mls:Implementation ;
+               rdfs:range mls:Algorithm ;
+               rdfs:label "implements" .
+
+
+###  http://www.w3.org/ns/mls#realizes
+mls:realizes rdf:type owl:ObjectProperty ;
+             rdfs:domain mls:Run ;
+             rdfs:range mls:Algorithm ;
+             rdfs:label "realizes" .
+
+
+###  http://www.w3.org/ns/mls#specifiedBy
+mls:specifiedBy rdf:type owl:ObjectProperty ;
+                rdfs:domain mls:HyperParameterSetting ,
+                            mls:ModelEvaluation ;
+                rdfs:range mls:EvaluationMeasure ,
+                           mls:HyperParameter ;
+                rdfs:label "specified by" .
+
+
+###  http://www.w3.org/ns/odrl/2/assigneeOf
+odrl:assigneeOf rdf:type owl:ObjectProperty ;
+                rdfs:domain odrl:Party ;
+                rdfs:range odrl:Offer ;
+                rdfs:label "assignee of" .
+
+
+###  http://www.w3.org/ns/odrl/2/assignerOf
+odrl:assignerOf rdf:type owl:ObjectProperty ;
+                rdfs:domain odrl:Party ;
+                rdfs:range odrl:Offer ;
+                rdfs:label "assigner of" .
+
+
+###  http://www.w3.org/ns/odrl/2/hasPolicy
+odrl:hasPolicy rdf:type owl:ObjectProperty ;
+               rdfs:domain daimo:Model ;
+               rdfs:range odrl:Agreement ,
+                          odrl:Offer ;
+               rdfs:label "has policy" .
+
+
+###  http://www.w3.org/ns/odrl/2/obligation
+odrl:obligation rdf:type owl:ObjectProperty ;
+                rdfs:domain odrl:Agreement ,
+                            odrl:Offer ;
+                rdfs:range odrl:Rule ;
+                rdfs:label "obligation" .
+
+
+###  http://www.w3.org/ns/odrl/2/permission
+odrl:permission rdf:type owl:ObjectProperty ;
+                rdfs:domain odrl:Agreement ,
+                            odrl:Offer ;
+                rdfs:range odrl:Rule ;
+                rdfs:label "permission" .
+
+
+###  http://www.w3.org/ns/odrl/2/prohibition
+odrl:prohibition rdf:type owl:ObjectProperty ;
+                 rdfs:domain odrl:Agreement ,
+                             odrl:Offer ;
+                 rdfs:range odrl:Rule ;
+                 rdfs:label "prohibition" .
+
+
+###  http://www.w3.org/ns/odrl/2/target
+odrl:target rdf:type owl:ObjectProperty ;
+            rdfs:domain odrl:Rule ;
+            rdfs:range daimo:Model ;
+            rdfs:label "target" .
+
+
+###  http://www.w3.org/ns/prov#wasDerivedFrom
+prov:wasDerivedFrom rdf:type owl:ObjectProperty ;
+                    rdfs:domain daimo:Model ;
+                    rdfs:range daimo:Model ;
+                    rdfs:label "was derived from" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/pionera/daimo#
+daimo:Model rdf:type owl:Class ;
+           rdfs:subClassOf dcat:Dataset ;
+           rdfs:label "Model" .
+
+
+###  http://w3id.org/mlso/HyperParameterCharacteristic
+mlso:HyperParameterCharacteristic rdf:type owl:Class ;
+                                  rdfs:label "Hyper Parameter Characteristic" .
+
+
+###  http://www.w3.org/ns/dcat#DataService
+dcat:DataService rdf:type owl:Class ;
+                 rdfs:label "Data Service" .
+
+
+###  http://www.w3.org/ns/dcat#Dataset
+dcat:Dataset rdf:type owl:Class ;
+             rdfs:label "Dataset" .
+
+
+###  http://www.w3.org/ns/dcat#Distribution
+dcat:Distribution rdf:type owl:Class ;
+                  rdfs:label "Distribution" .
+
+
+###  http://www.w3.org/ns/mls#Algorithm
+mls:Algorithm rdf:type owl:Class ;
+              rdfs:label "Algorithm" .
+
+
+###  http://www.w3.org/ns/mls#EvaluationMeasure
+mls:EvaluationMeasure rdf:type owl:Class ;
+                      rdfs:label "Evaluation Measure" .
+
+
+###  http://www.w3.org/ns/mls#EvaluationProcedure
+mls:EvaluationProcedure rdf:type owl:Class ;
+                        rdfs:label "Evaluation Procedure" .
+
+
+###  http://www.w3.org/ns/mls#EvaluationSpecification
+mls:EvaluationSpecification rdf:type owl:Class ;
+                            rdfs:label "Evaluation Specification" .
+
+
+###  http://www.w3.org/ns/mls#HyperParameter
+mls:HyperParameter rdf:type owl:Class ;
+                   rdfs:label "Hyper Parameter" .
+
+
+###  http://www.w3.org/ns/mls#HyperParameterSetting
+mls:HyperParameterSetting rdf:type owl:Class ;
+                          rdfs:label "Hyper Parameter Setting" .
+
+
+###  http://www.w3.org/ns/mls#Implementation
+mls:Implementation rdf:type owl:Class ;
+                   rdfs:label "Implementation" .
+
+
+###  http://www.w3.org/ns/mls#ModelEvaluation
+mls:ModelEvaluation rdf:type owl:Class ;
+                    rdfs:label "Model Evaluation" .
+
+
+###  http://www.w3.org/ns/mls#Run
+mls:Run rdf:type owl:Class ;
+        rdfs:label "Run" .
+
+
+###  http://www.w3.org/ns/odrl/2/Agreement
+odrl:Agreement rdf:type owl:Class ;
+               rdfs:label "Agreement" .
+
+
+###  http://www.w3.org/ns/odrl/2/Duty
+odrl:Duty rdf:type owl:Class ;
+          rdfs:subClassOf odrl:Rule ;
+          rdfs:label "Duty" .
+
+
+###  http://www.w3.org/ns/odrl/2/Offer
+odrl:Offer rdf:type owl:Class ;
+           rdfs:label "Offer" .
+
+
+###  http://www.w3.org/ns/odrl/2/Party
+odrl:Party rdf:type owl:Class ;
+           rdfs:label "Party" .
+
+
+###  http://www.w3.org/ns/odrl/2/Permission
+odrl:Permission rdf:type owl:Class ;
+                rdfs:subClassOf odrl:Rule ;
+                rdfs:label "Permission" .
+
+
+###  http://www.w3.org/ns/odrl/2/Prohibition
+odrl:Prohibition rdf:type owl:Class ;
+                 rdfs:subClassOf odrl:Rule ;
+                 rdfs:label "Prohibition" .
+
+
+###  http://www.w3.org/ns/odrl/2/Rule
+odrl:Rule rdf:type owl:Class ;
+          rdfs:label "Rule" .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class ;
+           rdfs:label "Agent" .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+###  https://w3id.org/okn/o/sd/Software
+sd:Software rdf:type owl:Class ;
+            rdfs:label "Software" .
+
+
+###  https://w3id.org/okn/o/sd/SoftwareConfiguration
+sd:SoftwareConfiguration rdf:type owl:Class ;
+                         rdfs:subClassOf sd:Software ;
+                         rdfs:label "Software Configuration" .
+
+
+###  https://w3id.org/okn/o/sd/SourceCode
+sd:SourceCode rdf:type owl:Class ;
+              rdfs:label "Source Code" .
+
+
+#################################################################
+#    DAIMO Extensions for Model Discovery (January 2026)
+#################################################################
+
+###  http://purl.org/pionera/daimo#Model
+daimo:Model rdf:type owl:Class ;
+            rdfs:subClassOf dcat:Dataset ;
+            rdfs:label "AI Model" ;
+            rdfs:comment "An AI/ML model available in a repository" .
+
+
+###  http://purl.org/pionera/daimo#ModelArchitecture
+daimo:ModelArchitecture rdf:type owl:Class ;
+                        rdfs:label "Model Architecture" ;
+                        rdfs:comment "Architecture or family of an ML model (e.g., BERT, GPT, Llama)" .
+
+
+###  http://purl.org/pionera/daimo#AccessPolicy
+daimo:AccessPolicy rdf:type owl:Class ;
+                   rdfs:subClassOf odrl:Policy ;
+                   rdfs:label "Access Policy" ;
+                   rdfs:comment "Access control policy for a model (public, private, gated)" .
+
+
+###  http://purl.org/pionera/daimo#HyperparameterConfiguration
+daimo:HyperparameterConfiguration rdf:type owl:Class ;
+                                  rdfs:label "Hyperparameter Configuration" ;
+                                  rdfs:comment "Technical configuration and hyperparameters of a model" .
+
+
+#################################################################
+#    DAIMO Data Properties
+#################################################################
+
+###  http://purl.org/pionera/daimo#downloads
+daimo:downloads rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:integer ;
+                rdfs:label "downloads" ;
+                rdfs:comment "Total number of downloads" .
+
+
+###  http://purl.org/pionera/daimo#likes
+daimo:likes rdf:type owl:DatatypeProperty ;
+            rdfs:domain daimo:Model ;
+            rdfs:range xsd:integer ;
+            rdfs:label "likes" ;
+            rdfs:comment "Number of likes or favorites" .
+
+
+###  http://purl.org/pionera/daimo#library
+daimo:library rdf:type owl:DatatypeProperty ;
+              rdfs:domain daimo:Model ;
+              rdfs:range xsd:string ;
+              rdfs:label "library" ;
+              rdfs:comment "ML library or framework (e.g., transformers, diffusers)" .
+
+
+###  http://purl.org/pionera/daimo#parameterCount
+daimo:parameterCount rdf:type owl:DatatypeProperty ;
+                     rdfs:domain daimo:Model ;
+                     rdfs:range xsd:long ;
+                     rdfs:label "parameter count" ;
+                     rdfs:comment "Total number of model parameters" .
+
+
+###  http://purl.org/pionera/daimo#requiresApproval
+daimo:requiresApproval rdf:type owl:DatatypeProperty ;
+                       rdfs:domain daimo:Model ;
+                       rdfs:range xsd:boolean ;
+                       rdfs:label "requires approval" ;
+                       rdfs:comment "Whether the model requires approval to access" .
+
+
+###  http://purl.org/pionera/daimo#carbonFootprint
+daimo:carbonFootprint rdf:type owl:DatatypeProperty ;
+                      rdfs:domain daimo:Model ;
+                      rdfs:range xsd:float ;
+                      rdfs:label "carbon footprint" ;
+                      rdfs:comment "CO2 equivalent emissions in kg" .
+
+
+#################################################################
+#    DAIMO Object Properties
+#################################################################
+
+###  http://purl.org/pionera/daimo#hasArchitecture
+daimo:hasArchitecture rdf:type owl:ObjectProperty ;
+                      rdfs:domain daimo:Model ;
+                      rdfs:range daimo:ModelArchitecture ;
+                      rdfs:label "has architecture" ;
+                      rdfs:comment "Links a model to its architecture family" .
+
+
+###  http://purl.org/pionera/daimo#accessControl
+daimo:accessControl rdf:type owl:ObjectProperty ;
+                    rdfs:domain daimo:Model ;
+                    rdfs:range daimo:AccessPolicy ;
+                    rdfs:label "access control" ;
+                    rdfs:comment "Access policy for the model" .
+
+
+###  http://purl.org/pionera/daimo#hasConfiguration
+daimo:hasConfiguration rdf:type owl:ObjectProperty ;
+                       rdfs:domain daimo:Model ;
+                       rdfs:range daimo:HyperparameterConfiguration ;
+                       rdfs:label "has configuration" ;
+                       rdfs:comment "Technical configuration of the model" .
+
+
+###  http://purl.org/pionera/daimo#fineTunedFrom
+daimo:fineTunedFrom rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf prov:wasDerivedFrom ;
+                    rdfs:domain daimo:Model ;
+                    rdfs:range daimo:Model ;
+                    rdfs:label "fine-tuned from" ;
+                    rdfs:comment "Base model from which this model was fine-tuned" .
+
+
+###  http://purl.org/pionera/daimo#usedByApplication
+daimo:usedByApplication rdf:type owl:ObjectProperty ;
+                        rdfs:domain daimo:Model ;
+                        rdfs:range foaf:Project ;
+                        rdfs:label "used by application" ;
+                        rdfs:comment "Applications or spaces that use this model" .
+
+
+###  http://purl.org/pionera/daimo#inferenceEndpoint
+daimo:inferenceEndpoint rdf:type owl:DatatypeProperty ;
+                        rdfs:domain daimo:Model ;
+                        rdfs:range xsd:anyURI ;
+                        rdfs:label "inference endpoint" ;
+                        rdfs:comment "Hosted inference endpoint URL" .
+
+
+#################################################################
+#    Extended Data Properties for Multi-Repository Support
+#################################################################
+
+### Metrics and Social Properties
+
+###  http://purl.org/pionera/daimo#runCount
+daimo:runCount rdf:type owl:DatatypeProperty ;
+               rdfs:domain daimo:Model ;
+               rdfs:range xsd:integer ;
+               rdfs:label "run count" ;
+               rdfs:comment "Total number of times the model has been executed (Replicate)" .
+
+
+###  http://purl.org/pionera/daimo#rating
+daimo:rating rdf:type owl:DatatypeProperty ;
+             rdfs:domain daimo:Model ;
+             rdfs:range xsd:float ;
+             rdfs:label "rating" ;
+             rdfs:comment "User rating score (Civitai)" .
+
+
+### Technical Properties
+
+###  http://purl.org/pionera/daimo#task
+daimo:task rdf:type owl:DatatypeProperty ;
+           rdfs:domain daimo:Model ;
+           rdfs:range xsd:string ;
+           rdfs:label "task" ;
+           rdfs:comment "Universal ML task category (e.g., text-generation, image-classification, object-detection). Replaces pipelineTag, moduleType, and category." .
+
+
+
+###  http://purl.org/pionera/daimo#modelType
+daimo:modelType rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:string ;
+                rdfs:label "model type" ;
+                rdfs:comment "Type or architecture of the model" .
+
+
+###  http://purl.org/pionera/daimo#safetensors
+daimo:safetensors rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:label "safetensors" ;
+                  rdfs:comment "Whether the model uses safetensors format" .
+
+
+###  http://purl.org/pionera/daimo#versionId
+daimo:versionId rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:string ;
+                rdfs:label "version ID" ;
+                rdfs:comment "Unique identifier for a specific model version (Replicate)" .
+
+
+###  http://purl.org/pionera/daimo#cogVersion
+daimo:cogVersion rdf:type owl:DatatypeProperty ;
+                 rdfs:domain daimo:Model ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "Cog version" ;
+                 rdfs:comment "Version of Cog framework used for containerization (Replicate)" .
+
+
+### Access Control Properties
+
+###  http://purl.org/pionera/daimo#accessLevel
+daimo:accessLevel rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "access level" ;
+                  rdfs:comment "Universal access level: public, private, gated (requires approval), limited. Replaces isPrivate, visibility, and availability." .
+
+###  http://purl.org/pionera/daimo#isPrivate
+daimo:isPrivate rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:boolean ;
+                rdfs:label "is private" ;
+                rdfs:comment "[DEPRECATED: Use accessLevel] Whether the model is private or public" .
+
+
+###  http://purl.org/pionera/daimo#isGated
+daimo:isGated rdf:type owl:DatatypeProperty ;
+              rdfs:domain daimo:Model ;
+              rdfs:range xsd:boolean ;
+              rdfs:label "is gated" ;
+              rdfs:comment "Whether the model requires acceptance of terms" .
+
+
+###  http://purl.org/pionera/daimo#isNSFW
+daimo:isNSFW rdf:type owl:DatatypeProperty ;
+             rdfs:domain daimo:Model ;
+             rdfs:range xsd:boolean ;
+             rdfs:label "is NSFW" ;
+             rdfs:comment "Whether the model generates adult content" .
+
+
+###  http://purl.org/pionera/daimo#isPOI
+daimo:isPOI rdf:type owl:DatatypeProperty ;
+            rdfs:domain daimo:Model ;
+            rdfs:range xsd:boolean ;
+            rdfs:label "is POI" ;
+            rdfs:comment "Whether the model depicts a person of interest" .
+
+
+###  http://purl.org/pionera/daimo#visibility
+daimo:visibility rdf:type owl:DatatypeProperty ;
+                 rdfs:domain daimo:Model ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "visibility" ;
+                 rdfs:comment "[DEPRECATED: Use accessLevel] Visibility status (public, private)" .
+
+
+### Resource Links
+
+###  http://purl.org/pionera/daimo#githubURL
+daimo:githubURL rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:anyURI ;
+                rdfs:label "GitHub URL" ;
+                rdfs:comment "Link to the source code repository" .
+
+
+###  http://purl.org/pionera/daimo#paperURL
+daimo:paperURL rdf:type owl:DatatypeProperty ;
+               rdfs:domain daimo:Model ;
+               rdfs:range xsd:anyURI ;
+               rdfs:label "paper URL" ;
+               rdfs:comment "Link to the research paper" .
+
+
+###  http://purl.org/pionera/daimo#coverImageURL
+daimo:coverImageURL rdf:type owl:DatatypeProperty ;
+                    rdfs:domain daimo:Model ;
+                    rdfs:range xsd:anyURI ;
+                    rdfs:label "cover image URL" ;
+                    rdfs:comment "URL of the model's cover or preview image" .
+
+
+###  http://purl.org/pionera/daimo#sourceURL
+daimo:sourceURL rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:anyURI ;
+                rdfs:label "source URL" ;
+                rdfs:comment "URL to the model's page on the source repository" .
+
+
+###  http://purl.org/pionera/daimo#licenseURL
+daimo:licenseURL rdf:type owl:DatatypeProperty ;
+                 rdfs:domain daimo:Model ;
+                 rdfs:range xsd:anyURI ;
+                 rdfs:label "license URL" ;
+                 rdfs:comment "URL to the license text" .
+
+
+### Domain-Specific Properties
+
+###  http://purl.org/pionera/daimo#triggerWords
+daimo:triggerWords rdf:type owl:DatatypeProperty ;
+                   rdfs:domain daimo:Model ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "trigger words" ;
+                   rdfs:comment "Activation keywords for the model (Civitai, LoRA models)" .
+
+
+###  http://purl.org/pionera/daimo#baseModel
+daimo:baseModel rdf:type owl:DatatypeProperty ;
+                rdfs:domain daimo:Model ;
+                rdfs:range xsd:string ;
+                rdfs:label "base model" ;
+                rdfs:comment "Name or identifier of the base model (Civitai)" .
+
+
+###  http://purl.org/pionera/daimo#availability
+daimo:availability rdf:type owl:DatatypeProperty ;
+                   rdfs:domain daimo:Model ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "availability" ;
+                   rdfs:comment "[DEPRECATED: Use accessLevel] Availability status (All, EarlyAccess, etc.)" .
+
+
+### Quality and Metadata
+
+###  http://purl.org/pionera/daimo#licenseName
+daimo:licenseName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "license name" ;
+                  rdfs:comment "Human-readable name of the license" .
+
+
+###  http://purl.org/pionera/daimo#cardData
+daimo:cardData rdf:type owl:DatatypeProperty ;
+               rdfs:domain daimo:Model ;
+               rdfs:range xsd:string ;
+               rdfs:label "card data" ;
+               rdfs:comment "Model card metadata in JSON format" .
+
+
+### TensorFlow Hub Specific Properties
+
+###  http://purl.org/pionera/daimo#tfhubHandle
+daimo:tfhubHandle rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "TF Hub Handle" ;
+                  rdfs:comment "Unique handle for the model in TensorFlow Hub" .
+
+###  http://purl.org/pionera/daimo#fineTunable
+daimo:fineTunable rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:label "fine-tunable" ;
+                  rdfs:comment "Whether the model can be fine-tuned" .
+
+###  http://purl.org/pionera/daimo#frameworkVersion
+daimo:frameworkVersion rdf:type owl:DatatypeProperty ;
+                       rdfs:domain daimo:Model ;
+                       rdfs:range xsd:string ;
+                       rdfs:label "framework version" ;
+                       rdfs:comment "Version of the framework (e.g., TF 2.x)" .
+
+###  http://purl.org/pionera/daimo#modelFormat
+daimo:modelFormat rdf:type owl:DatatypeProperty ;
+                  rdfs:domain daimo:Model ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "model format" ;
+                  rdfs:comment "Format of the model (e.g., SavedModel)" .
+
+### PyTorch Hub Specific Properties
+
+###  http://purl.org/pionera/daimo#hubRepo
+daimo:hubRepo rdf:type owl:DatatypeProperty ;
+              rdfs:domain daimo:Model ;
+              rdfs:range xsd:string ;
+              rdfs:label "hub repository" ;
+              rdfs:comment "GitHub repository path for PyTorch Hub model (e.g., pytorch/vision)" .
+
+###  http://purl.org/pionera/daimo#entryPoint
+daimo:entryPoint rdf:type owl:DatatypeProperty ;
+                 rdfs:domain daimo:Model ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "entry point" ;
+                 rdfs:comment "Function name in hubconf.py to load the model" .
+
+### PapersWithCode Specific Properties (Academic Papers)
+
+###  http://purl.org/pionera/daimo#arxivId
+daimo:arxivId rdf:type owl:DatatypeProperty ;
+              rdfs:domain daimo:Model ;
+              rdfs:range xsd:string ;
+              rdfs:label "arXiv ID" ;
+              rdfs:comment "arXiv identifier for academic papers (e.g., 1512.03385)" .
+
+###  http://purl.org/pionera/daimo#paper
+daimo:paper rdf:type owl:DatatypeProperty ;
+            rdfs:domain daimo:Model ;
+            rdfs:range xsd:string ;
+            rdfs:label "associated paper" ;
+            rdfs:comment "URL or reference to the associated academic paper" .
+
+###  http://purl.org/pionera/daimo#venue
+daimo:venue rdf:type owl:DatatypeProperty ;
+            rdfs:domain daimo:Model ;
+            rdfs:range xsd:string ;
+            rdfs:label "publication venue" ;
+            rdfs:comment "Conference or journal where the paper was published (e.g., NeurIPS 2015)" .
+
+###  http://purl.org/pionera/daimo#yearIntroduced
+daimo:yearIntroduced rdf:type owl:DatatypeProperty ;
+                     rdfs:domain daimo:Model ;
+                     rdfs:range xsd:integer ;
+                     rdfs:label "year introduced" ;
+                     rdfs:comment "Year when the method/model was first introduced" .
+
+###  http://purl.org/pionera/daimo#citationCount
+daimo:citationCount rdf:type owl:DatatypeProperty ;
+                    rdfs:domain daimo:Model ;
+                    rdfs:range xsd:integer ;
+                    rdfs:label "citation count" ;
+                    rdfs:comment "Number of academic citations (papers referencing this work)" .
+
+###  http://purl.org/pionera/daimo#isOfficial
+daimo:isOfficial rdf:type owl:DatatypeProperty ;
+                 rdfs:domain daimo:Model ;
+                 rdfs:range xsd:boolean ;
+                 rdfs:label "is official implementation" ;
+                 rdfs:comment "Indicates if this is the official implementation from the paper authors" .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
+###  Extended for AI Model Discovery - January 2026
+###  Multi-Repository Extension - January 2026
+###  PapersWithCode Extension - January 2026

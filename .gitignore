@@ -1,0 +1,69 @@
+# Archivos de entorno
+.env
+.env.local
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Poetry
+poetry.lock
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Data files (excepto ejemplos pequeños)
+data/raw/*.json
+data/raw/*.csv
+data/processed/*.ttl
+data/processed/*.rdf
+data/processed/*.jsonld
+
+# Modelos y cachés
+models/
+.cache/
+*.pkl
+*.h5
+*.pth
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporales
+tmp/
+temp/
+*.tmp
