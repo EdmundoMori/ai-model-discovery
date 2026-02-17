@@ -1,0 +1,91 @@
+query_id,query_type,query_text,BM25_Baseline_status,Method1_Enhanced_status,Method1_LLM_Only_status,BM25_Baseline_error,Method1_Enhanced_error,Method1_LLM_Only_error
+q001,retrieval,PyTorch models,INCORRECT,SUCCESS,SUCCESS,No relevant results,,
+q002,retrieval,Transformers models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q003,retrieval,Image classification models,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q004,retrieval,Text generation models,SUCCESS,SUCCESS,SUCCESS,,,
+q005,retrieval,Diffusers library models,SUCCESS,SUCCESS,SUCCESS,,,
+q006,retrieval,Hugging Face models,INCORRECT,SUCCESS,SUCCESS,No relevant results,,
+q007,retrieval,Sentence similarity models,SUCCESS,SUCCESS,SUCCESS,,,
+q008,retrieval,Fill mask models,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q009,retrieval,Feature extraction models,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q010,retrieval,TensorFlow models,SUCCESS,SUCCESS,SUCCESS,,,
+q011,retrieval,Text classification models,SUCCESS,SUCCESS,SUCCESS,,,
+q012,retrieval,Civitai models,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q013,retrieval,Image segmentation models,SUCCESS,SUCCESS,SUCCESS,,,
+q014,retrieval,Object detection models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q015,retrieval,Question answering models,INCORRECT,INCORRECT,NO_RESULTS,No relevant results,No relevant results,No results returned
+q016,retrieval,Sentence transformers models,SUCCESS,SUCCESS,SUCCESS,,,
+q017,retrieval,Kaggle models,SUCCESS,SUCCESS,SUCCESS,,,
+q018,retrieval,Zero-shot classification models,INCORRECT,SUCCESS,SUCCESS,No relevant results,,
+q019,retrieval,Token classification models,INCORRECT,INCORRECT,NO_RESULTS,No relevant results,No relevant results,No results returned
+q020,retrieval,Automatic speech recognition models,SUCCESS,SUCCESS,SUCCESS,,,
+q021,retrieval,JAX models,SUCCESS,SUCCESS,SUCCESS,,,
+q022,retrieval,Scikit-learn models,INCORRECT,SUCCESS,INCORRECT,No relevant results,,No relevant results
+q023,retrieval,Translation models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q024,aggregation,Summarization models,SUCCESS,NO_RESULTS,NO_RESULTS,,No results returned,No results returned
+q025,retrieval,Text-to-speech models,INCORRECT,SUCCESS,SUCCESS,No relevant results,,
+q026,retrieval,Keras models,SUCCESS,SUCCESS,ERROR,,,"Expected SelectQuery, found 'OPTIONALLY'  (at char 272), (line:13, col:2)"
+q027,retrieval,Video classification models,INCORRECT,INCORRECT,NO_RESULTS,No relevant results,No relevant results,No results returned
+q028,retrieval,Depth estimation models,INCORRECT,INCORRECT,NO_RESULTS,No relevant results,No relevant results,No results returned
+q029,retrieval,Image-to-text models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q030,retrieval,Text2text generation models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q031,retrieval,PyTorch models for image classification,SUCCESS,INCORRECT,INCORRECT,,No relevant results,No relevant results
+q032,retrieval,Hugging Face models for text generation,SUCCESS,INCORRECT,INCORRECT,,No relevant results,No relevant results
+q033,retrieval,Transformers models for text classification,SUCCESS,INCORRECT,INCORRECT,,No relevant results,No relevant results
+q034,retrieval,Civitai models with diffusers,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q035,retrieval,PyTorch models for image segmentation,SUCCESS,INCORRECT,INCORRECT,,No relevant results,No relevant results
+q036,retrieval,Transformers models for fill mask,SUCCESS,SUCCESS,NO_RESULTS,,,No results returned
+q037,retrieval,Models with MIT license,INCORRECT,SUCCESS,NO_RESULTS,No relevant results,,No results returned
+q038,retrieval,Models with Apache-2.0 license,INCORRECT,INCORRECT,NO_RESULTS,No relevant results,No relevant results,No results returned
+q039,ordering,Top 5 models by downloads,SUCCESS,SUCCESS,SUCCESS,,,
+q040,ordering,Top 5 models by likes,SUCCESS,SUCCESS,SUCCESS,,,
+q041,retrieval,Hugging Face transformers for question answering,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q042,retrieval,PyTorch models for object detection,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q043,retrieval,Sentence transformers for sentence similarity,SUCCESS,SUCCESS,SUCCESS,,,
+q044,retrieval,Kaggle TensorFlow models,SUCCESS,SUCCESS,SUCCESS,,,
+q045,ordering,Top 10 most downloaded models,SUCCESS,SUCCESS,SUCCESS,,,
+q046,ordering,Top 10 most liked models,SUCCESS,SUCCESS,SUCCESS,,,
+q047,retrieval,Transformers models for token classification,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q048,retrieval,JAX models for image classification,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q049,retrieval,Transformers for translation,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q050,aggregation,Transformers for summarization,SUCCESS,NO_RESULTS,NO_RESULTS,,No results returned,No results returned
+q051,retrieval,PyTorch models with more than 1000 downloads,INCORRECT,SUCCESS,SUCCESS,No relevant results,,
+q052,retrieval,Transformers models with more than 100 likes,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q053,ordering,Models for zero-shot classification ordered by downloads,SUCCESS,NO_RESULTS,ERROR,,No results returned,"Expected SelectQuery, found 'daimo'  (at char 297), (line:13, col:2)"
+q054,ordering,PyTorch vision models sorted by likes,SUCCESS,SUCCESS,SUCCESS,,,
+q055,ordering,Sentence transformers ordered by downloads,SUCCESS,SUCCESS,SUCCESS,,,
+q056,ordering,Diffusers models sorted by likes,SUCCESS,SUCCESS,SUCCESS,,,
+q057,ordering,Text classification models ordered by downloads,SUCCESS,SUCCESS,SUCCESS,,,
+q058,ordering,Image classification models sorted by likes,SUCCESS,SUCCESS,SUCCESS,,,
+q059,retrieval,Hugging Face models with Apache license,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q060,retrieval,Kaggle models with MIT license,SUCCESS,SUCCESS,INCORRECT,,,No relevant results
+q061,aggregation,How many models are in the catalog?,SUCCESS,SUCCESS,SUCCESS,,,
+q062,aggregation,How many models per library?,SUCCESS,SUCCESS,SUCCESS,,,
+q063,aggregation,How many models per task?,SUCCESS,SUCCESS,SUCCESS,,,
+q064,aggregation,How many models per source?,SUCCESS,SUCCESS,SUCCESS,,,
+q065,aggregation,Average downloads per library,SUCCESS,SUCCESS,SUCCESS,,,
+q066,aggregation,Average likes per task,SUCCESS,SUCCESS,SUCCESS,,,
+q067,aggregation,Total downloads per source,SUCCESS,SUCCESS,SUCCESS,,,
+q068,aggregation,Total likes per library,SUCCESS,SUCCESS,SUCCESS,,,
+q069,retrieval,Libraries with more than 10 models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q070,retrieval,Tasks with more than 5 models,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q071,retrieval,Hugging Face PyTorch models for text-to-image with MIT license,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q072,ordering,Civitai diffusers models for text-to-image sorted by downloads,SUCCESS,SUCCESS,SUCCESS,,,
+q073,retrieval,Transformers models from Hugging Face for NLP tasks with high downloads,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q074,complex,PyTorch vision models with distribution and Apache license,SUCCESS,SUCCESS,SUCCESS,,,
+q075,complex,"Models with dataset, distribution and MIT license",SUCCESS,ERROR,NO_RESULTS,,"Expected SelectQuery, found 'OPTIONA'  (at char 379), (line:15, col:2)",No results returned
+q076,aggregation,Count models per library and task combination,SUCCESS,SUCCESS,SUCCESS,,,
+q077,aggregation,Count models per source and library,SUCCESS,SUCCESS,SUCCESS,,,
+q078,aggregation,Task combinations with average downloads above 1000,SUCCESS,SUCCESS,SUCCESS,,,
+q079,aggregation,Libraries with total downloads above 50000,SUCCESS,SUCCESS,SUCCESS,,,
+q080,aggregation,Sources with average likes above 50,SUCCESS,SUCCESS,SUCCESS,,,
+q081,retrieval,Maximum downloads per library,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q082,retrieval,Minimum likes per task,INCORRECT,INCORRECT,ERROR,No relevant results,No relevant results,"Expected end of text, found '>'  (at char 239), (line:11, col:22)"
+q083,complex,Models with implementation and hyperparameters,SUCCESS,SUCCESS,SUCCESS,,,
+q084,retrieval,Models with evaluation metrics,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q085,complex,Transformers models with algorithm and runs,SUCCESS,SUCCESS,SUCCESS,,,
+q086,aggregation,Count licenses per source,SUCCESS,SUCCESS,SUCCESS,,,
+q087,aggregation,Tasks with models having both downloads and likes above average,SUCCESS,SUCCESS,SUCCESS,,,
+q088,aggregation,Library-task combinations with highest total engagement,SUCCESS,SUCCESS,SUCCESS,,,
+q089,retrieval,Sources with diverse task coverage,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results
+q090,retrieval,Popular model patterns across sources,INCORRECT,INCORRECT,INCORRECT,No relevant results,No relevant results,No relevant results

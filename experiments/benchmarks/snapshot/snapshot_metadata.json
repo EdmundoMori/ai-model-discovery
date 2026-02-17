@@ -1,0 +1,22 @@
+{
+  "snapshot_id": "v1_20260216_112844",
+  "created_at": "2026-02-16T11:28:44.585446",
+  "source_file": "/home/edmundo/ai-model-discovery/data/ai_models_multi_repo.ttl",
+  "sha256": "cd29857a89f0a4d009498e3a21e46c435a20a2af9a5109642b185d75f8a53c16",
+  "is_verified": null,
+  "size_bytes": 3365188,
+  "size_mb": 3.21,
+  "model_count": 476,
+  "triple_count": 20712,
+  "sources": {
+    "PapersWithCode": 90,
+    "huggingface": 90,
+    "civitai": 90,
+    "PyTorch Hub": 90,
+    "kaggle": 70,
+    "replicate": 25,
+    "TensorFlow Hub": 10
+  },
+  "format": "turtle",
+  "ontology": "DAIMO (http://purl.org/pionera/daimo#)"
+}

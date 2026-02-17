@@ -1,108 +1,111 @@
 id,query,complexity,sparql,is_valid,confidence,errors
 1,list all AI models,basic,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?task
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:task ?task .
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title .
 }
-LIMIT 10",True,high,
+LIMIT 50",True,high,
 2,show me models from HuggingFace,basic,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ""HuggingFace""^^xsd:string .
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title ?source WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title ;
+         dcterms:source ?source .
+  FILTER(CONTAINS(LCASE(?source), ""huggingface""))
 }
-LIMIT 10",True,high,
+LIMIT 20",True,high,
 3,PyTorch models,basic,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?source ?task ?library ?downloads ?likes 
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ?source ;
-         daimo:task ?task .
-  OPTIONAL { ?model daimo:library ?library }
-  OPTIONAL { ?model daimo:downloads ?downloads }
-  OPTIONAL { ?model daimo:likes ?likes }
-  FILTER(CONTAINS(LCASE(?library), ""pytorch"") && CONTAINS(LCASE(?task), ""computer"") && ?downloads > 10000)
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title ?library WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title ;
+         daimo:library ?library .
+  FILTER(CONTAINS(LCASE(?library), ""pytorch""))
 }
-ORDER BY DESC(?downloads) DESC(?likes)
-LIMIT 15",True,medium,
+LIMIT 20",True,high,
 4,computer vision models,basic,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?source ?task ?downloads
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ?source ;
-         daimo:task ?task .
-  FILTER(CONTAINS(LCASE(?task), ""computer vision"") || CONTAINS(LCASE(?task), ""image"") || CONTAINS(LCASE(?task), ""vision""))
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title ?domain WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title ;
+         daimo:domain ?domain .
+  FILTER(CONTAINS(LCASE(?domain), ""computer"") || CONTAINS(LCASE(?domain), ""vision"") || CONTAINS(LCASE(?domain), ""cv""))
 }
-ORDER BY DESC(?downloads)
-LIMIT 10",True,high,
+LIMIT 20",True,high,
 5,most popular models by downloads,intermediate,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?downloads
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title ?downloads WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title ;
          daimo:downloads ?downloads .
 }
 ORDER BY DESC(?downloads)
-LIMIT 10",True,high,
-6,high rated models with rating above 4.7,intermediate,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?rating
+LIMIT 20",True,high,
+6,high rated models with rating above 4.7,intermediate,"PREFIX dcterms: <http://purl.org/dc/terms/>
+
+
+PREFIX daimo: <http://purl.org/pionera/daimo#>
+
+SELECT ?model ?title ?source (Rating as ?rating)
 WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:rating ?rating .
-  FILTER(?rating > 4.7)
+ ?model a daimo:Model ;
+ dcterms:title ?title ;
+ dcterms:source ?source ;
+ daimo:Rating ?rating .
 }
-LIMIT 10",True,high,
+FILTER(?rating > 4.7)
+LIMIT 15",False,low,"SPARQL syntax error: Expected SelectQuery, found '('  (at char 123), (line:6, col:30)"
 7,NLP models with high downloads,intermediate,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?source ?downloads ?task
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ?source ;
-         daimo:task ?task .
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?model ?title ?library ?downloads WHERE {
+  ?model a daimo:Model ;
+         dcterms:title ?title ;
+         daimo:library ?library ;
          daimo:downloads ?downloads .
+  OPTIONAL { ?model daimo:task ?task }
+  FILTER(
+    CONTAINS(LCASE(?library), ""transformers"") &&
+    (!BOUND(?task) || CONTAINS(LCASE(?task), ""nlp"") || CONTAINS(LCASE(?task), ""text"")) &&
+    ?downloads > 10000
+  )
 }
-FILTER(
-  (CONTAINS(LCASE(?task), ""nlp"") || CONTAINS(LCASE(?task), ""language"") || CONTAINS(LCASE(?task), ""text"")) &&
-  ?downloads > 100
-)
 ORDER BY DESC(?downloads)
-LIMIT 10",False,low,"SPARQL syntax error: Expected SelectQuery, found 'daimo'  (at char 220), (line:8, col:10)"
+LIMIT 15",True,high,
 8,count models by task category,advanced,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?task (COUNT(?model) AS ?count)
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?task (COUNT(?model) as ?count)
 WHERE {
-  ?model a daimo:AIModel ;
+  ?model a daimo:Model ;
          daimo:task ?task .
 }
 GROUP BY ?task
-ORDER BY DESC(?count)",True,medium,
+ORDER BY DESC(?count)",True,high,
 9,average rating per repository,advanced,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?source ?rating ?task (AVG(?rating) AS ?avgRating)
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ?source ;
-         daimo:task ?task .
-  OPTIONAL { ?model daimo:rating ?rating }
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?source (AVG(?likes) as ?avgLikes) (MAX(?likes) as ?maxLikes) (COUNT(?model) as ?count) WHERE {
+  ?model a daimo:Model ;
+         dcterms:source ?source ;
+         daimo:likes ?likes .
+  FILTER(?likes > 0)
 }
 GROUP BY ?source
-ORDER BY DESC(?avgRating)
-LIMIT 10",True,high,
+ORDER BY DESC(?avgLikes)",True,high,
 10,models with their ratings and tasks,advanced,"PREFIX daimo: <http://purl.org/pionera/daimo#>
-SELECT ?title ?source ?downloads ?rating ?task
-WHERE {
-  ?model a daimo:AIModel ;
-         daimo:title ?title ;
-         daimo:source ?source ;
-         daimo:downloads ?downloads ;
-         daimo:rating ?rating .
+
+SELECT ?task (COUNT(?model) as ?count) (AVG(?downloads) as ?avgPop) WHERE {
+  ?model a daimo:Model ;
          daimo:task ?task .
+  OPTIONAL { ?model daimo:downloads ?downloads }
 }
-FILTER(?rating > 4.0 && CONTAINS(LCASE(?task), ""computer vision""))
-ORDER BY DESC(?downloads)
-LIMIT 10",False,low,"SPARQL syntax error: Expected SelectQuery, found 'daimo'  (at char 270), (line:9, col:10)"
+GROUP BY ?task
+HAVING(COUNT(?model) >= 5)
+ORDER BY DESC(?count) DESC(?avgPop)
+LIMIT 15",True,high,

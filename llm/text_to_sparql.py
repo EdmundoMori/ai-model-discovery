@@ -50,6 +50,7 @@ except ImportError:
 from .prompts import DAIMO_ONTOLOGY_CONTEXT, TEXT_TO_SPARQL_PROMPT
 from .query_validator import validate_sparql
 from .rag_sparql_examples import get_all_examples, SPARQLExample
+from .sparql_error_corrector import SPARQLErrorCorrector
 from .ontology_dictionary import (
     get_top_properties,
     get_all_properties,
@@ -566,7 +567,25 @@ class TextToSPARQLConverter:
         else:
             print(f"   ✅ Query correcta, sin correcciones necesarias")
         
-        return corrected
+        # 13. NUEVA: Aplicar corrector de errores generalizado
+        error_corrector = SPARQLErrorCorrector()
+        corrected_final, correction_metadata = error_corrector.correct_sparql(corrected)
+        
+        if correction_metadata['corrections_applied']:
+            print(f"   🔧 Error Corrector aplicado ({len(correction_metadata['corrections_applied'])} correcciones):")
+            for correction in correction_metadata['corrections_applied']:
+                error_type = correction['type']
+                impact = correction.get('impact', 'unknown')
+                error_prevented = correction.get('error_prevented', 'N/A')
+                print(f"      • [{impact.upper()}] {error_type}: {error_prevented}")
+                corrections_made.append(f"[ErrorCorrector] {error_type}")
+        
+        if correction_metadata['warnings']:
+            print(f"   ⚠️  Warnings del Error Corrector:")
+            for warning in correction_metadata['warnings']:
+                print(f"      • {warning}")
+        
+        return corrected_final
     
     def _clean_sparql_output(self, raw_output: str) -> str:
         """
